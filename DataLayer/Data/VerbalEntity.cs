@@ -25,7 +25,7 @@ namespace DataLayer.Data
         [Required]
         public string OfficerName { get; set; }
 
-        [Display(Name = "Data della trascrizione verbale")]
+        [Display(Name = "Data della trascrizione del verbale")]
         [Required]
         public DateTime VerbalTranscription { get; set; }
 
