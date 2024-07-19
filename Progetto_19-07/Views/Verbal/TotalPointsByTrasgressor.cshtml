@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DataLayer.Data.PointsSummary>
+
+@{
+    ViewData["Title"] = "TotalPointsByTrasgressor";
+}
+
+<h1>TotalPointsByTrasgressor</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OffenderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPoints)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OffenderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPoints)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

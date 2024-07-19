@@ -1,0 +1,27 @@
+﻿@model List<DataLayer.Data.ViolationEntity>
+
+<h1>Violazioni con Importo Maggiore di 400 Euro</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cognome</th>
+            <th>Nome</th>
+            <th>Data Violazione</th>
+            <th>Importo</th>
+            <th>Decurtamento Punti</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Registry.Surname</td>
+                <td>@item.Registry.Name</td>
+                <td>@item.ViolationData.ToShortDateString()</td>
+                <td>@item.Violation.Amount.ToString("C")</td>
+                <td>@item.LicencePoints</td>
+            </tr>
+        }
+    </tbody>
+</table>
