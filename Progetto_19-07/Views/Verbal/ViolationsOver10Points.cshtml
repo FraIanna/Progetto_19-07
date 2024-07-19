@@ -4,12 +4,9 @@
     ViewData["Title"] = "ViolationsOver10Points";
 }
 
-<h1>ViolationsOver10Points</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1>Violazioni oltre i 10 punti</h1>
+<hr />
+<table class="table table-primary table-striped">
     <thead>
         <tr>
             <th>
@@ -19,15 +16,14 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataViolazione)
+                Data Violazione
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Importo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DecurtamentoPunti)
+              Punti Decurtati
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -47,11 +43,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DecurtamentoPunti)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

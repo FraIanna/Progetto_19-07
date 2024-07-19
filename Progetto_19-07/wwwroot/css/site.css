@@ -18,5 +18,42 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+}
+
+.navbar {
+    background-color: #3465E3;
+}
+
+.navbar a, .nav-link{
+    color: white;
+    border-bottom: 1px solid transparent;
+}
+.nav-link:hover{
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.custom-container {
+    background-color: #3465E3;
+    box-shadow: .25em .5em .35em grey;
+    color:white;
+    padding: 1em;
+}
+
+.custom-border{
+    border-bottom: 3px dashed white;
+    padding-bottom: .35em
+}
+
+.custom-border-2 {
+    border-top: 3px dashed white;
+    padding-top: .35em
+}
+
+.form-group label {
+    margin: 0;
+    width: 100%;
+    color: white;
+    padding: .25em;
+    border-radius: 10px;
 }

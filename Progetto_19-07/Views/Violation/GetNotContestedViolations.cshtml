@@ -4,29 +4,11 @@
     ViewData["Title"] = "GetNotContesteViolations";
 }
 
-<h1>GetNotContesteViolations</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1>Violazioni non contestate</h1>
+<hr />
+<table class="table table-primary table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegistryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ViolationId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ViolationData)
             </th>
@@ -42,30 +24,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.LicencePoints)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContestedTicket)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegistryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ViolationId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ViolationData)
             </td>
@@ -80,14 +43,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LicencePoints)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContestedTicket)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

@@ -4,42 +4,27 @@
     ViewData["Title"] = "TotalPointsByTrasgressor";
 }
 
-<h1>TotalPointsByTrasgressor</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1>Punti decurtati per ogni trasgressore </h1>
+<hr />
+<table class="table table-primary table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RegistryId)
+               Nome e cognome
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OffenderName)
+               Punti totali decurtati
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalPoints)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RegistryId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.OffenderName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPoints)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

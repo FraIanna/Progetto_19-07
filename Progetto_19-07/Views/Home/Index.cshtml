@@ -2,7 +2,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <h1 class="display-4 text-center ">Benvenuto Agente!</h1>
+    <hr />
+    <div class="row gap-3 offset-2">
+        <div class="col-5 custom-container">
+            <h4 class="custom-border">Registra Trasgressore</h4>
+            <a class="btn btn-outline-light" asp-controller="Registry" asp-action="RegisterOffender">Vai</a>
+        </div>
+        <div class="col-5 custom-container">
+            <h4 class="custom-border">Crea Verbale</h4>
+            <a class="btn btn-outline-light" asp-area="" asp-controller="Verbal" asp-action="CreateVerbal">Vai</a>
+        </div>
+    </div>
+    <hr />
+    <div class="col-12 custom-container">
+        <h4 class="custom-border">Violazioni non contestate</h4>
+        <a class="btn btn-outline-light" asp-area="" asp-controller="Violation" asp-action="GetNotContestedViolations" >Vai</a>
+    </div>
+    <div class="col-12 custom-container mt-5">
+        <h4 class="custom-border">Altre operazioni</h4>
+        <p>Clicca sul bottone qui sotto per effettuare altre operazioni</p>
+        <a class="btn btn-outline-light" asp-area="" asp-controller="Home" asp-action="Other">Vai</a>
+    </div>
 </div>
