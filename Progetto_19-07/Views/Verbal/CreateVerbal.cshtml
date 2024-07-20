@@ -10,6 +10,7 @@
         <div class="col-md-6 custom-container offset-md-3 ">
             <form asp-action="CreateVerbal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="RegistryId" value="@ViewBag.RegistryId" />
                 <div class="form-group">
                     <label asp-for="ViolationData" class="control-label"></label>
                     <div class="custom-border-2"></div>

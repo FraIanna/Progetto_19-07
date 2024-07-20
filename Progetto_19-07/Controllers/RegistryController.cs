@@ -1,15 +1,16 @@
 ﻿using DataLayer;
 using DataLayer.Data;
 using Microsoft.AspNetCore.Mvc;
+using Progetto_19_07.Services;
 
 namespace Progetto_19_07.Controllers
 {
     public class RegistryController : Controller
     {
-        private readonly IRegistryDao _registryDao;
+        private readonly RegistryService _registryService;
 
-        public RegistryController(IRegistryDao registryDao) {
-            _registryDao = registryDao;
+        public RegistryController(RegistryService registryService) {
+            _registryService = registryService;
         }
 
         public IActionResult RegisterOffender()
@@ -20,23 +21,20 @@ namespace Progetto_19_07.Controllers
         [HttpPost]
         public IActionResult RegisterOffender(RegistryEntity registry)
         {
-            var createdRegistry = _registryDao.Create(registry);
-            if(createdRegistry == null)
+            try
             {
-                return Ok(createdRegistry);
-            }
-            return View(registry);
-        }
+                int registryId = _registryService.CreateRegistry(registry);
 
-        //[HttpGet("{id}")]
-        //public IActionResult GetRegistry(int id)
-        //{
-        //    var registry = _registryDao.GetRegistry(id);
-        //    if (registry != null)
-        //    {
-        //        return Ok(registry);
-        //    }
-        //    return NotFound();
-        //}
+                TempData["SuccessMessage"] = "Anagrafica registrata con successo. Puoi ora aggiungere il verbale.";
+                HttpContext.Session.SetInt32("RegistryId", registryId);
+
+                return RedirectToAction("CreateVerbal", "Verbal");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Errore: {ex.Message}");
+            }
+            return View();
+        }
     }
 }

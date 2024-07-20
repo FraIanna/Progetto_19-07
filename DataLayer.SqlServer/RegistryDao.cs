@@ -11,11 +11,11 @@ namespace DataLayer.SqlServer
 
         public RegistryDao(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DbString");
+            _connectionString = configuration.GetConnectionString("DbString")!;
         }
 
         private const string INSERT_REGISTRY = @"INSERT INTO ANAGRAFICA (Cognome, Nome, Indirizzo, Città, Cap, CodFS) 
-        OUTOPUT INSERTED.Id
+        OUTPUT INSERTED.Id
         VALUES (@cognome, @nome, @indirizzo, @citta, @cap, @codfs )";
 
         public RegistryEntity Create(RegistryEntity registry)
@@ -24,7 +24,7 @@ namespace DataLayer.SqlServer
             {
                 using var conn = new SqlConnection(_connectionString);
                 conn.Open();
-                using var cmd = new SqlCommand(INSERT_REGISTRY);
+                using var cmd = new SqlCommand(INSERT_REGISTRY, conn);
                 cmd.Parameters.AddWithValue("@cognome", registry.Name);
                 cmd.Parameters.AddWithValue("@nome", registry.Surname);
                 cmd.Parameters.AddWithValue("@indirizzo", registry.Address);
@@ -32,12 +32,12 @@ namespace DataLayer.SqlServer
                 cmd.Parameters.AddWithValue("@cap", registry.Cap);
                 cmd.Parameters.AddWithValue("@codfs", registry.CodiceFiscale);
 
-                registry.Id = (int)cmd.ExecuteScalar();
-                return registry;
+                int id = (int)cmd.ExecuteScalar();
+                return new RegistryEntity { Id = id };
             }
             catch (Exception ex) 
             {
-            return null;
+            throw new Exception("Errore nella registrazione", ex);
             }
         }
 

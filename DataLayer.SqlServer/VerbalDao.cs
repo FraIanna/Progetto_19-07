@@ -60,6 +60,19 @@ namespace DataLayer.SqlServer
             try
             {
                 using var conn = new SqlConnection(_connectionString);
+                conn.Open();
+
+                using (var checkCmd = new SqlCommand("SELECT COUNT(*) FROM ANAGRAFICA WHERE Id = @IdAnagrafica", conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@IdAnagrafica", verbal.RegistryId);
+                    int count = (int)checkCmd.ExecuteScalar();
+                    if (count == 0)
+                    {
+                        throw new Exception($"IdAnagrafica {verbal.RegistryId} non esiste nella tabella ANAGRAFICA.");
+                    }
+                }
+
+
                 using var cmd = new SqlCommand(INSERT_VERBAL, conn);
                 cmd.Parameters.AddWithValue("@IdAnagrafica", verbal.RegistryId);
                 cmd.Parameters.AddWithValue("@IdViolazione", verbal.ViolationId);
@@ -70,7 +83,6 @@ namespace DataLayer.SqlServer
                 cmd.Parameters.AddWithValue("@DecurtamentoPunti", verbal.LicencePoints);
                 cmd.Parameters.AddWithValue("@MultaContestata", verbal.ContestedTicket);
 
-                conn.Open();
                 verbal.Id = (int)cmd.ExecuteScalar();
                 return verbal;
             }

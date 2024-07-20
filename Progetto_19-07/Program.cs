@@ -1,5 +1,6 @@
 using DataLayer.SqlServer;
 using DataLayer;
+using Progetto_19_07.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,17 @@ builder.Services.AddControllersWithViews();
 builder.Services
     .RegisterDAOs()
     .AddScoped<DbContext>()
+    .AddScoped<RegistryService>()
     ;
+
+builder.Services
+    .AddDistributedMemoryCache()
+    .AddSession(options =>
+    {
+        options.IdleTimeout = TimeSpan.FromMinutes(30);
+        options.Cookie.HttpOnly = true;
+        options.Cookie.IsEssential = true;
+    });
 
 var app = builder.Build();
 
@@ -23,6 +34,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSession();
 
 app.UseRouting();
 
